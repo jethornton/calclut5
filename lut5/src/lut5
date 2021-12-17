@@ -1,0 +1,64 @@
+#!/usr/bin/python3
+
+"""
+Minimal file to load a Qt Designer generated ui file.
+The .ui file must be in the same directory as this file.
+"""
+
+import sys, os
+from PyQt5.QtWidgets import (QApplication, QMainWindow, QTableWidget,
+	QTableWidgetItem, QCheckBox)
+from PyQt5 import uic
+
+
+class main(QMainWindow):
+	def __init__(self):
+		super().__init__()
+		uic.loadUi(os.path.join(os. getcwd(), 'lut5.ui'), self)
+		#self.setGeometry(50, 50, 500, 300)
+		self.setWindowTitle("lut5 calculator!")
+		self.generatePB.clicked.connect(self.generate)
+		self.show()
+		self.buildTable()
+
+	def buildTable(self):
+		self.table1.setColumnCount(7)
+		self.table1.setRowCount(32)
+		self.table1.setHorizontalHeaderLabels(["Bit 4", "Bit 3", "Bit 2",
+			"Bit 1", "Bit 0", "Weight", "True"])
+		# Set the table values
+		w = 1
+		for i in range(32): # rows
+			b = f'{i:0>5b}'
+			for j in range(7): # columns
+				if j <= 4:
+					self.table1.setItem(i, j, QTableWidgetItem(b[j]))
+				elif j == 5:
+					if i == 0:
+						self.table1.setItem(i, j, QTableWidgetItem(hex(w)))
+					else:
+						w = w << 1
+						self.table1.setItem(i, j, QTableWidgetItem(hex(w)))
+				elif j == 6:
+					ch = QCheckBox(parent=self.table1)
+					ch.clicked.connect(self.onStateChanged)
+					#self.table1.setItem(i, j, QTableWidgetItem(ch))
+					self.table1.setCellWidget(i, j, ch)
+
+	def onStateChanged(self):
+		ch = self.sender()
+		#print(ch.parent())
+		ix = self.table1.indexAt(ch.pos())
+		print(ix.row(), ix.column(), ch.isChecked())
+
+	def generate(self):
+		print(f'Rows {self.table1.rowCount()}')
+		for i in range(self.table1.rowCount()):
+			if self.table1.cellWidget(i, 6).isChecked():
+				print(f'Row {i} is checked')
+				print(f'{self.table1.item(i, 5).text()}')
+
+if __name__ == '__main__':
+	app = QApplication(sys.argv)
+	gui = main()
+	sys.exit(app.exec_())
