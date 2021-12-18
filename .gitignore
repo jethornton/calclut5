@@ -5,3 +5,4 @@
 calclut5/debian/calclut5
 calclut5/debian/.debhelper
 calclut5/debian/*.substvars
+calclut5/debian/debhelper-build-stamp
