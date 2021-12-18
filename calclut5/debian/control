@@ -1,0 +1,13 @@
+Source: calclut5
+Maintainer: John Thornton <jt@gnipsel.com>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.3
+Section: utils
+Priority: optional
+
+Package: calclut5
+Priority: optional
+Architecture: any
+Depends: python3 (>=3.6), python3-pyqt5, ${misc:Depends}
+Description: LinuxCNC lut5 Calculator
+ Fun to Use

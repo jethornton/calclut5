@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=calclut5
+Comment=LinuxCNC lut5 Configuration Tool
+Exec=calclut5
+Icon=/usr/share/pixmaps/linuxcncicon.png
+Categories=X-CNC;Development
+Terminal=false
+StartupNotify=true
+StartupWMClass=7i96
+Name[en_US]=calclut5

@@ -10,11 +10,19 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QTableWidget,
 	QTableWidgetItem, QCheckBox)
 from PyQt5 import uic
 
+if os.path.split(sys.argv[0])[0] == '/usr/bin':
+        GUI_PATH = '/usr/lib/calclut5'
+        print('Installed')
+
+if os.path.split(sys.argv[0])[0] == '.':
+        GUI_PATH = os.path.split(os.path.realpath(sys.argv[0]))[0]
+        print('In Development')
 
 class main(QMainWindow):
 	def __init__(self):
 		super().__init__()
-		uic.loadUi(os.path.join(os. getcwd(), 'lut5.ui'), self)
+		uic.loadUi(os.path.join(GUI_PATH, 'calclut5.ui'), self)
+		#uic.loadUi(os.path.join(os. getcwd(), 'calclut5.ui'), self)
 		#self.setGeometry(50, 50, 500, 300)
 		self.setWindowTitle("lut5 calculator!")
 		self.generatePB.clicked.connect(self.generate)

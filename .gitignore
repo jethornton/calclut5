@@ -1,0 +1,7 @@
+*.dsc
+*.xz
+*.buildinfo
+*.changes
+calclut5/debian/calclut5
+calclut5/debian/.debhelper
+calclut5/debian/*.substvars
