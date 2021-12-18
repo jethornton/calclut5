@@ -49,14 +49,19 @@ class main(QMainWindow):
 		ch = self.sender()
 		#print(ch.parent())
 		ix = self.table1.indexAt(ch.pos())
-		print(ix.row(), ix.column(), ch.isChecked())
+		#print(ix.row(), ix.column(), ch.isChecked())
 
 	def generate(self):
 		print(f'Rows {self.table1.rowCount()}')
+		h = 0
 		for i in range(self.table1.rowCount()):
 			if self.table1.cellWidget(i, 6).isChecked():
-				print(f'Row {i} is checked')
-				print(f'{self.table1.item(i, 5).text()}')
+				h += int(self.table1.item(i, 5).text(), 16)
+				#print(h)
+				#print(f'Row {i} is checked')
+				#print(f'{self.table1.item(i, 5).text()}')
+		self.outLE.setText(hex(h))
+
 
 if __name__ == '__main__':
 	app = QApplication(sys.argv)
