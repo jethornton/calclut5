@@ -21,6 +21,12 @@
        <string>Logic</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
+       <item row="1" column="0" colspan="6">
+        <widget class="QTableWidget" name="table1"/>
+       </item>
+       <item row="2" column="3">
+        <widget class="QLineEdit" name="outLE"/>
+       </item>
        <item row="2" column="0">
         <widget class="QPushButton" name="generatePB">
          <property name="text">
@@ -28,8 +34,12 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="2">
-        <widget class="QLineEdit" name="outLE"/>
+       <item row="0" column="0" colspan="4">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Check all rungs that can be true and press Generate</string>
+         </property>
+        </widget>
        </item>
        <item row="2" column="1">
         <spacer name="horizontalSpacer">
@@ -44,13 +54,30 @@
          </property>
         </spacer>
        </item>
-       <item row="1" column="0" colspan="3">
-        <widget class="QTableWidget" name="table1"/>
-       </item>
-       <item row="0" column="0" colspan="3">
-        <widget class="QLabel" name="label">
+       <item row="2" column="5">
+        <widget class="QPushButton" name="copyHALPB">
+         <property name="toolTip">
+          <string>Copies the HAL lines to the Clipboard</string>
+         </property>
          <property name="text">
-          <string>Check all rungs that can be true and press Generate</string>
+          <string>Copy HAL</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Function</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="4">
+        <widget class="QPushButton" name="copyFunctionPB">
+         <property name="toolTip">
+          <string>Copies only the Function to the Clipboard</string>
+         </property>
+         <property name="text">
+          <string>Copy Function</string>
          </property>
         </widget>
        </item>

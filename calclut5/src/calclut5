@@ -26,6 +26,9 @@ class main(QMainWindow):
 		#self.setGeometry(50, 50, 500, 300)
 		self.setWindowTitle("lut5 calculator!")
 		self.generatePB.clicked.connect(self.generate)
+		self.copyHALPB.clicked.connect(self.copyHAL)
+		self.copyFunctionPB.clicked.connect(self.copyFunction)
+		self.h = 0
 		self.show()
 		self.buildTable()
 
@@ -61,14 +64,23 @@ class main(QMainWindow):
 
 	def generate(self):
 		print(f'Rows {self.table1.rowCount()}')
-		h = 0
+		self.h = 0
 		for i in range(self.table1.rowCount()):
 			if self.table1.cellWidget(i, 6).isChecked():
-				h += int(self.table1.item(i, 5).text(), 16)
+				self.h += int(self.table1.item(i, 5).text(), 16)
 				#print(h)
 				#print(f'Row {i} is checked')
 				#print(f'{self.table1.item(i, 5).text()}')
-		self.outLE.setText(hex(h))
+		self.outLE.setText(hex(self.h))
+
+	def copyHAL(self):
+		qclip = QApplication.clipboard()
+		text = f'loadrt lut5\naddf lut5.0 servo-thread\nsetp lut5.0.function {hex(self.h)}'
+		qclip.setText(text)
+
+	def copyFunction(self):
+		qclip = QApplication.clipboard()
+		qclip.setText(f'{hex(self.h)}')
 
 
 if __name__ == '__main__':
